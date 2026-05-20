@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  reminder-bot:
+    build: .
+    container_name: telegram_reminder_bot
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    volumes:
+      - ./data:/app/data
+      - ./reminders.db:/app/reminders.db
