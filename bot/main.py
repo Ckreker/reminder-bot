@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+import asyncio
 from dotenv import load_dotenv
 from telegram.ext import (
     ApplicationBuilder,
@@ -77,7 +78,7 @@ def main():
     
     # Запуск планировщика
     scheduler = ReminderScheduler(db, send_message_to_user)
-    scheduler.start()
+    scheduler.start(loop=asyncio.get_event_loop())
     
     logger.info("Бот запущен")
     bot_app.run_polling()
